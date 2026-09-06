@@ -1,25 +1,34 @@
 # Sola Ebina — portfolio
 
-A minimal portfolio. Two pages, one stylesheet, no build step and no
-dependencies — open `index.html` in a browser and it runs.
+A minimal portfolio. No build step, no dependencies — open `index.html` in a
+browser and it runs.
+
+The site is three steps deep, and each step shows one thing:
 
 ```
-index.html          the one page: hero, work index, practice, about, contact
-case.html           the template every case study is drawn with
+index.html          the front door — a name, a line, three disciplines
+  └ work.html?d=…   one discipline's cases, and nothing else
+      └ case.html?id=…   the case study
+about.html          about and contact, reached from the footer
+```
+
+```
 styles.css          everything visual. The whole system is in :root at the top
-content.js          shared helpers (escaping, small markdown, the index row)
-app.js              page behaviour: sticky header, reveal, the hover preview
+content.js          shared helpers (escaping, small markdown, a work row)
+front.js            builds the three doors on the front page
+work.js             draws a discipline's showcase
 case.js             draws a case study from its entry
+app.js              shared behaviour: profile, header nav, sticky rule, reveal
 content/works.js  ← YOUR WRITING LIVES HERE
 images/
   work/             case study images
-  about.webp        the About illustration
 ```
 
-Everything you'd normally want to change lives in `content/works.js`. The
-HTML files hold layout and almost no copy — your name, email, links and
-location come from the `profile` block, and the three disciplines come from
-the `disciplines` block.
+Everything you'd normally want to change lives in `content/works.js`. The HTML
+files hold layout and almost no copy: your name, email, links and location come
+from the `profile` block, and the three disciplines — their names, their
+one-liners, their skill lists, **and the order they appear in on the front
+page** — come from the `disciplines` block.
 
 ---
 
@@ -63,7 +72,8 @@ nothing to run.
 ```js
 {
   id: 'retention-model',        // the web address. lowercase, dashes.
-  discipline: 'data',           // 'data' | 'strategy' | 'social'
+  discipline: 'data',           // 'data' | 'strategy' | 'social' — which
+                                // showcase it appears under
   title: 'Churn early-warning model',
   thesis: 'One sentence. The whole case.',
   client: 'Acme',
@@ -87,8 +97,9 @@ nothing to run.
 }
 ```
 
-Each entry becomes a row on the index and its own page at
-`case.html?id=<your-id>`, which you can send to someone directly.
+Each entry becomes a row under its discipline at `work.html?d=<discipline>`,
+and its own page at `case.html?id=<your-id>` which you can send to someone
+directly.
 
 ### Block types
 
@@ -113,7 +124,9 @@ and `[link](https://example.com)`.
 - **`draft: true`** keeps a case off the site so you can write it over a few
   sittings.
 - **Images** go in `images/work/`. Roughly 1600px wide is plenty.
-- **Order is the order in the file.** The index numbers itself.
+- **Order is the order in the file**, within each discipline.
+- **The front page counts for itself.** Add a case and "3 cases" becomes
+  "4 cases" on its own.
 
 ---
 
@@ -122,7 +135,8 @@ and `[link](https://example.com)`.
 The whole visual system is the `:root` block at the top of `styles.css` —
 paper, ink, rules, the accent, the type stacks, and the rhythm values
 (`--gutter`, `--max`, `--prose`, `--section`). Change a token there and it
-propagates.
+propagates. Two pages narrow that measure for themselves: `.page-front` and
+`.page-case` each reset `--max`.
 
 Dark mode is a second block below it that redefines only the colours, and it
 follows the reader's system setting.
@@ -137,6 +151,7 @@ serif for case-study prose because it's the only long read on the site.
 
 - Motion respects `prefers-reduced-motion`; the hover preview is off entirely
   on touch and reduced-motion.
-- The work index is keyboard reachable, and case pages have a skip link.
+- Everything is keyboard reachable, and inner pages have a skip link.
+- The front page holds the viewport and doesn't scroll.
 - Case pages print cleanly — the chrome drops away and sections avoid breaking.
 - No build step, no dependencies, nothing fetched from a CDN.

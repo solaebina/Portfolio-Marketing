@@ -15,7 +15,7 @@
       <h1>That case isn't here.</h1>
       <p class="case-thesis">It may have been renamed, or the link may have lost a piece.
         The full index is a click away.</p>
-      <p style="margin-top:2rem"><a class="back" href="index.html#work"><span>←</span> All work</a></p>
+      <p style="margin-top:2rem"><a class="back" href="index.html"><span>←</span> Back</a></p>
     </div>`;
     return;
   }
@@ -98,7 +98,7 @@
   host.innerHTML = `
     <article class="case">
       <div class="wrap">
-        <a class="back" href="index.html#work"><span>←</span> All work</a>
+        <a class="back" href="${esc(discLink(w.discipline))}"><span>←</span> ${esc(disc.label || 'All work')}</a>
 
         <header class="case-head">
           <p class="eyebrow" style="margin-bottom:1.25rem">${esc(disc.label || '')}</p>

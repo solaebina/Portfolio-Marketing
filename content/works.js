@@ -56,17 +56,17 @@ window.PORTFOLIO = {
   },
 
   disciplines: {
-    data: {
-      label: 'Data, Analytics & AI',
-      short: 'Data & AI',
-      line:  'Models, dashboards and attribution — and the part that matters, which is saying out loud what the numbers mean and what to do about it.',
-      skills: ['Dashboards', 'SQL', 'Attribution', 'A/B Testing', 'Forecasting', 'AI Tooling', 'Automation'],
-    },
     strategy: {
       label: 'Marketing Strategy',
       short: 'Strategy',
       line:  'Positioning, audience, channel mix, budget. The plan that turns a year of scattered work into one direction.',
       skills: ['Positioning', 'GTM Planning', 'Audience Research', 'Campaign Architecture', 'Budget & Forecasting', 'Brand Messaging'],
+    },
+    data: {
+      label: 'Data, Analytics & AI',
+      short: 'Data & AI',
+      line:  'Models, dashboards and attribution — and the part that matters, which is saying out loud what the numbers mean and what to do about it.',
+      skills: ['Dashboards', 'SQL', 'Attribution', 'A/B Testing', 'Forecasting', 'AI Tooling', 'Automation'],
     },
     social: {
       label: 'Social Media Marketing',

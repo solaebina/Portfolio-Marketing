@@ -12,6 +12,10 @@ const WORKS = (P.works || []).filter(w => w && w.id && !w.draft);
 const workById = id => WORKS.find(w => w.id === id);
 const discOf   = w  => DISCIPLINES[w.discipline] || {};
 
+/* The work is reached through a discipline, never as one flat list. */
+const worksIn  = key => WORKS.filter(w => w.discipline === key);
+const discLink = key => `work.html?d=${encodeURIComponent(key)}`;
+
 const esc = s => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;');
@@ -32,17 +36,15 @@ const linkFor = w => w.external ? w.external : `case.html?id=${encodeURIComponen
 
 const pad = n => String(n).padStart(2, '0');
 
-/* One row of the work index. */
-function workRow(w, i) {
+/* One row of a discipline's showcase. */
+function workRow(w) {
   const ext = w.external ? ' target="_blank" rel="noopener"' : '';
   const thumb = w.thumb ? ` data-peek="${esc(w.thumb)}"` : '';
   return `<a class="row" href="${esc(linkFor(w))}"${ext}${thumb}>
-    <span class="row-num">${pad(i + 1)}</span>
     <span>
       <span class="row-title">${esc(w.title)}</span>
       ${w.thesis ? `<span class="row-thesis">${esc(w.thesis)}</span>` : ''}
     </span>
-    <span class="row-disc">${esc(discOf(w).label || '')}</span>
     <span class="row-year">${esc(w.year || '')}</span>
     <span class="row-go" aria-hidden="true">↗</span>
   </a>`;
