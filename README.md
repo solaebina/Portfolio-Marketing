@@ -6,7 +6,7 @@ browser and it runs.
 The site is three steps deep, and each step shows one thing:
 
 ```
-index.html          the front door — a name, a line, three disciplines
+index.html          the front door — the sitemap block, at hero scale
   └ work.html?d=…   one discipline's cases, and nothing else
       └ case.html?id=…   the case study
 about.html          about and contact, reached from the footer
@@ -15,10 +15,11 @@ about.html          about and contact, reached from the footer
 ```
 styles.css          everything visual. The whole system is in :root at the top
 content.js          shared helpers (escaping, small markdown, a work row)
-front.js            builds the three doors on the front page
+front.js            puts the sitemap block on the front page
 work.js             draws a discipline's showcase
 case.js             draws a case study from its entry
-app.js              shared behaviour: profile, header nav, footer, reveal
+app.js              shared behaviour: profile, header nav, reveal, and
+                    sitemapMarkup() — the block used as both hero and footer
 content/works.js  ← YOUR WRITING LIVES HERE
 images/
   work/             case study images
@@ -128,8 +129,9 @@ and `[link](https://example.com)`.
 - **Order is the order in the file**, within each discipline.
 - **The front page counts for itself.** Add a case and "3 cases" becomes
   "4 cases" on its own.
-- **The footer builds itself** from the same entries, which is what `short` is
-  for — a full title is too long for a footer column.
+- **The hero and footer build themselves** from the same entries, which is
+  what `short` is for — a full title is far too long for a column. Keep these
+  to two or three words.
 
 ---
 
@@ -141,8 +143,9 @@ paper, ink, rules, the accent, the type stacks, and the rhythm values
 propagates. Two pages narrow that measure for themselves: `.page-front` and
 `.page-case` each reset `--max`.
 
-Dark mode is a second block below it that redefines only the colours, and it
-follows the reader's system setting.
+There is no dark palette. The design commits to white, so every colour is
+stated once and `color-scheme: light` stops the browser tinting form controls
+and scrollbars.
 
 Type is deliberately system-only, so nothing is fetched from a CDN and the
 page renders instantly offline: a grotesk for the interface and headlines, a
@@ -155,7 +158,8 @@ serif for case-study prose because it's the only long read on the site.
 - Motion respects `prefers-reduced-motion`; the hover preview is off entirely
   on touch and reduced-motion.
 - Everything is keyboard reachable, and inner pages have a skip link.
-- The front page holds the viewport and doesn't scroll, and keeps a bare
-  three-link footer; the sitemap footer is for the pages inside.
+- The front page holds the viewport and doesn't scroll.
+- The site is white, and stays white: it declares `color-scheme: light` and
+  carries no dark palette, so a reader's dark OS doesn't invert it.
 - Case pages print cleanly — the chrome drops away and sections avoid breaking.
 - No build step, no dependencies, nothing fetched from a CDN.

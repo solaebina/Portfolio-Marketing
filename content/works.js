@@ -85,7 +85,7 @@ window.PORTFOLIO = {
 
     {
       id: 'insurance-fraud-detection',
-      short: 'Insurance fraud detection',
+      short: 'Fraud detection',
       discipline: 'data',
       title: 'Finding the claims worth investigating',
       thesis: 'An insurer was picking fraud investigations by instinct, so I built a model that scores every claim on arrival and puts the likely ones first.',
@@ -160,7 +160,7 @@ window.PORTFOLIO = {
 
     {
       id: 'student-feedback-sentiment',
-      short: 'Student feedback sentiment',
+      short: 'Feedback sentiment',
       discipline: 'data',
       title: 'Reading 4,500 student reviews without reading them',
       thesis: 'A university had more course feedback than anyone could get through, so I built a model that sorts it in seconds — and was honest about the third of it the model should never touch.',
@@ -235,7 +235,7 @@ window.PORTFOLIO = {
 
     {
       id: 'sleep-data-for-doctors',
-      short: 'Sleep data for doctors',
+      short: 'Sleep data',
       discipline: 'data',
       title: "A friend's sleep data, made readable",
       thesis: 'Months of watch data sat unusable in a file nobody could open, so I turned it into one chart a sleep doctor could read in an appointment.',
@@ -295,7 +295,7 @@ window.PORTFOLIO = {
 
     {
       id: 'hotel-guest-segmentation',
-      short: 'Hotel guest segmentation',
+      short: 'Guest segmentation',
       discipline: 'strategy',
       title: 'Grouping guests so the marketing stops going to everyone',
       thesis: 'A hotel was sending one offer to every guest, so I grouped 119,000 bookings by how people actually book — and stopped it discounting to people who were coming anyway.',
@@ -370,7 +370,7 @@ window.PORTFOLIO = {
 
     {
       id: 'restaurant-satisfaction-drivers',
-      short: 'Restaurant satisfaction',
+      short: 'Guest satisfaction',
       discipline: 'strategy',
       title: 'What actually makes a restaurant’s customers happy',
       thesis: 'A restaurant knew its ratings mattered but not what moved them, so I modelled which parts of the evening change a satisfaction score — and by how much.',
@@ -444,7 +444,7 @@ window.PORTFOLIO = {
 
     {
       id: 'pitch-research-share-of-voice',
-      short: 'Share-of-voice research',
+      short: 'Share of voice',
       discipline: 'strategy',
       title: 'Finding the conversation nobody had claimed',
       thesis: 'Two prospects wanted to know where they really stood, and share-of-voice audits turned an assumed catch-up problem into a first-mover opening in both cases.',
