@@ -147,6 +147,11 @@ There is no dark palette. The design commits to white, so every colour is
 stated once and `color-scheme: light` stops the browser tinting form controls
 and scrollbars.
 
+Sizing responds to the window's **height** as well as its width: the front
+page's rhythm is set in `vh`-aware clamps, it stops insisting on a full screen
+below 640px tall, and it steps up one tier past 1800px wide rather than sitting
+marooned in the middle of a large monitor.
+
 Type is deliberately system-only, so nothing is fetched from a CDN and the
 page renders instantly offline: a grotesk for the interface and headlines, a
 serif for case-study prose because it's the only long read on the site.
@@ -158,7 +163,8 @@ serif for case-study prose because it's the only long read on the site.
 - Motion respects `prefers-reduced-motion`; the hover preview is off entirely
   on touch and reduced-motion.
 - Everything is keyboard reachable, and inner pages have a skip link.
-- The front page holds the viewport and doesn't scroll.
+- The front page holds the viewport and doesn't scroll, down to roughly a
+  laptop; below that it gives up whitespace first and only then scrolls.
 - The site is white, and stays white: it declares `color-scheme: light` and
   carries no dark palette, so a reader's dark OS doesn't invert it.
 - Case pages print cleanly — the chrome drops away and sections avoid breaking.

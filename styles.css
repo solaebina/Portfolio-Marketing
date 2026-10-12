@@ -28,7 +28,6 @@
   --gutter: clamp(1.25rem, 5vw, 4.5rem);
   --max:    78rem;
   --prose:  38rem;
-  --section: clamp(5rem, 11vw, 9.5rem);
 
   --ease: cubic-bezier(.22, .61, .36, 1);
 }
@@ -75,7 +74,6 @@ a { color: inherit; }
   font-weight: 500;
 }
 
-.rule { height: 1px; background: var(--rule); border: 0; }
 
 .skip {
   position: absolute; left: -9999px;
@@ -135,22 +133,22 @@ a { color: inherit; }
 .front {
   min-height: 100svh;
   display: flex; flex-direction: column; justify-content: center;
-  padding: clamp(1.5rem, 4vh, 3rem) var(--gutter);
+  padding: clamp(1.25rem, 5vh, 3rem) var(--gutter);
   background: var(--paper);
 }
-.front .smap-main { padding-block: 0 clamp(2rem, 5vh, 3.5rem); }
+.front .smap-main { padding-block: 0 clamp(1.5rem, 5vh, 3.5rem); }
 .front .smap-base { padding-bottom: 0; }
 
-/* at hero scale the name leads, and the links come up to reading size */
-/* Scoped to the wide layout: unscoped, this out-specifies the stacking rules
-   further down and the brand would sit on top of the CTA on a phone. */
+/* At hero scale the name leads and the links come up to reading size.
+   The grid is scoped to the wide layout on purpose: unscoped it out-specifies
+   the stacking rule further down, and the columns would never stack. */
 @media (min-width: 1081px) {
   .front .smap-main {
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 2.9fr);
   }
 }
+.front .smap-lockup { font-size: clamp(1.75rem, 3.7vw, 2.875rem); }
 .front .smap-mark {
-  font-size: clamp(1.75rem, 3.7vw, 2.875rem);
   letter-spacing: -.042em; font-weight: 500; line-height: 1.02;
   white-space: nowrap;         /* the name is one line, never "Sola / Ebina" */
   max-width: 100%;
@@ -161,6 +159,25 @@ a { color: inherit; }
 }
 .front .smap-col li a { font-size: clamp(.875rem, 1.1vw, 1rem); color: var(--ink); }
 .front .smap-meta li { font-size: .875rem; }
+.front .smap-meta svg { width: 1.125rem; height: 1.125rem; }
+.front .smap-social svg { width: 1.25rem; height: 1.25rem; }
+
+/* Past about 1800px the clamps have all topped out and the composition starts
+   to look marooned in the middle of the screen. One wider tier, then stop:
+   the measure still has to stay readable. */
+@media (min-width: 1800px) {
+  .page-front { --max: 96rem; }
+  .front .smap-lockup { font-size: 3.5rem; }
+  .front .smap-line   { font-size: 1.5rem; }
+  .front .smap-col li a { font-size: 1.0625rem; }
+  .front .smap-col ul { gap: .875rem; }
+}
+
+/* A landscape phone or a short window has no room to hold a full screen —
+   let the content set the height rather than centre it inside a forced one. */
+@media (max-height: 640px) {
+  .front { min-height: 0; justify-content: flex-start; }
+}
 
 /* ── a discipline's showcase ──────────────────────────────────────────────── */
 .work-head { padding-block: clamp(2.5rem, 6vw, 4rem) clamp(2rem, 5vw, 3rem); }
@@ -286,33 +303,39 @@ a { color: inherit; }
 }
 
 /* ── who ──────────────────────────────────────────────────────────────────── */
+.smap-lockup {
+  display: flex; align-items: center; gap: .42em;
+  font-size: 1.0625rem;        /* the lockup's scale; the mark and logo follow */
+}
+.smap-logo { width: 1em; height: 1em; flex: none; color: var(--ink); }
+
 .smap-mark {
-  display: inline-block;
-  font-size: 1.0625rem; font-weight: 600; letter-spacing: -.02em;
+  font-size: inherit; font-weight: 600; letter-spacing: -.02em;
   text-decoration: none;
 }
 .smap-line {
-  margin-top: .5rem;
+  margin-top: .625rem;
   font-family: var(--serif); font-style: italic;
-  font-size: .9375rem; line-height: 1.4; color: var(--ink-2);
-  max-width: 22ch;
+  font-size: .9375rem; line-height: 1.45; color: var(--ink-2);
+  max-width: 24ch;
 }
 
-.smap-meta { margin-top: 1.5rem; display: grid; gap: .3125rem; }
-.smap-meta li { font-size: .8125rem; color: var(--ink-2); }
-.smap-meta a { text-decoration: none; }
+.smap-meta { margin-top: clamp(1rem, 3vh, 1.5rem); display: grid; gap: .625rem; }
+.smap-meta li {
+  display: flex; align-items: center; gap: .625rem;
+  font-size: .8125rem; color: var(--ink-2);
+}
+.smap-meta svg { width: 1.0625rem; height: 1.0625rem; flex: none; color: var(--ink-3); }
+.smap-meta a { text-decoration: none; transition: color .2s var(--ease); }
 .smap-meta a:hover { color: var(--ink); }
 
-.smap-social { margin-top: 1.5rem; display: flex; gap: .625rem; }
+.smap-social { margin-top: clamp(1rem, 3vh, 1.5rem); display: flex; gap: .875rem; }
 .smap-social a {
-  display: grid; place-items: center;
-  width: 2rem; height: 2rem;
-  border: 1px solid var(--rule); border-radius: 50%;
-  color: var(--ink-2);
-  transition: color .2s var(--ease), border-color .2s var(--ease);
+  display: block; color: var(--ink);
+  transition: opacity .2s var(--ease);
 }
-.smap-social a:hover { color: var(--ink); border-color: var(--ink-3); }
-.smap-social svg { width: 1rem; height: 1rem; }
+.smap-social a:hover { opacity: .55; }
+.smap-social svg { width: 1.125rem; height: 1.125rem; display: block; }
 
 /* ── the sitemap ──────────────────────────────────────────────────────────── */
 .smap-cols {
@@ -369,7 +392,6 @@ a { color: inherit; }
   .smap-main { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 680px) {
-  .smap-main { grid-template-columns: minmax(0, 1fr); }
   .smap-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1.25rem; }
   .smap-base { justify-content: flex-start; }
 }

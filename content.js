@@ -34,8 +34,6 @@ function inline(s) {
 /* Where does a row go when clicked? */
 const linkFor = w => w.external ? w.external : `case.html?id=${encodeURIComponent(w.id)}`;
 
-const pad = n => String(n).padStart(2, '0');
-
 /* One row of a discipline's showcase. */
 function workRow(w) {
   const ext = w.external ? ' target="_blank" rel="noopener"' : '';
@@ -62,6 +60,4 @@ function hydrateProfile() {
   document.querySelectorAll('[data-linkedin]').forEach(el => {
     if (PROFILE.linkedin) el.href = PROFILE.linkedin;
   });
-  const yr = document.getElementById('yr');
-  if (yr) yr.textContent = new Date().getFullYear();
 }
