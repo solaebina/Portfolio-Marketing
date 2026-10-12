@@ -88,21 +88,12 @@ function sitemapMarkup(hero) {
 
       <nav class="smap-cols" aria-label="${hero ? 'Work' : 'All work'}">
         ${columns}
-        <div class="smap-col">
-          <h2 class="smap-head"><a href="about.html">Info</a></h2>
-          <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="${esc(mail)}">Contact</a></li>
-            <li><a href="${esc(PROFILE.linkedin || '')}" target="_blank" rel="noopener">LinkedIn &nearr;</a></li>
-          </ul>
-        </div>
       </nav>
 
     </div>
 
     <div class="smap-base wrap">
       <span>&copy; ${new Date().getFullYear()} ${esc(PROFILE.name || '')}</span>
-      <span class="smap-built">Built by hand &middot; no build step, no dependencies</span>
       ${hero ? '' : '<button class="smap-top" type="button">Back to top &uarr;</button>'}
     </div>`;
 }
