@@ -68,7 +68,7 @@
   }
 
   const sections = (w.sections || []).map(s => `
-    <section class="case-section rise">
+    <section class="case-section">
       <h2 class="case-label">${esc(s.title)}</h2>
       <div class="case-content">${(s.blocks || []).map(block).join('')}</div>
     </section>`).join('');
@@ -98,7 +98,7 @@
   host.innerHTML = `
     <article class="case">
       <div class="wrap">
-        <a class="back" href="${esc(discLink(w.discipline))}"><span>←</span> ${esc(disc.label || 'All work')}</a>
+        <a class="back" href="index.html"><span>←</span> ${esc(PROFILE.name || 'Home')}</a>
 
         <header class="case-head">
           <p class="eyebrow" style="margin-bottom:1.25rem">${esc(disc.label || '')}</p>
@@ -110,7 +110,7 @@
           ${facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}
         </dl>
 
-        ${w.hero ? `<figure class="case-hero rise">
+        ${w.hero ? `<figure class="case-hero">
           <img src="${esc(w.hero)}" alt="${esc(w.title)}">
         </figure>` : ''}
 

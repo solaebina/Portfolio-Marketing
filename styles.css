@@ -68,7 +68,7 @@
   /* measure & rhythm */
   --gutter: clamp(1.25rem, 5vw, 4.5rem);
   --max:    78rem;
-  --prose:  38rem;
+  --prose:  42rem;
 
   --ease: cubic-bezier(.22, .61, .36, 1);
 }
@@ -173,12 +173,14 @@ a { color: inherit; }
 
 .front {
   min-height: 100svh;
-  display: flex; flex-direction: column; justify-content: center;
+  display: flex; flex-direction: column;
   padding: clamp(1.25rem, 5vh, 3rem) var(--gutter);
   background: var(--paper);
 }
-.front .smap-main { padding-block: 0 clamp(1.5rem, 5vh, 3.5rem); }
-.front .smap-base { padding-bottom: 0; }
+/* the block sits near the top, with room to breathe above it */
+.front .smap-main { padding-block: clamp(1.5rem, 9vh, 5.5rem) clamp(1.5rem, 5vh, 3.5rem); }
+/* and the copyright is held to the bottom of the screen */
+.front .smap-base { margin-top: auto; padding-bottom: 0; }
 
 /* At hero scale the name leads and the links come up to reading size.
    The grid is scoped to the wide layout on purpose: unscoped it out-specifies
@@ -201,7 +203,6 @@ a { color: inherit; }
 .front .smap-col li a { font-size: clamp(.875rem, 1.1vw, 1rem); color: var(--ink); }
 .front .smap-meta li { font-size: .875rem; }
 .front .smap-meta svg { width: 1.125rem; height: 1.125rem; }
-.front .smap-social svg { width: 1.25rem; height: 1.25rem; }
 
 /* Past about 1800px the clamps have all topped out and the composition starts
    to look marooned in the middle of the screen. One wider tier, then stop:
@@ -343,13 +344,12 @@ a { color: inherit; }
 }
 
 /* ── who ──────────────────────────────────────────────────────────────────── */
-/* Two halves — the name and the line, then the contact details. Stacked while
-   the brand has a column to itself; side by side once it hasn't. */
-.smap-brand, .smap-contact {
+/* Two halves — the name and the line, then the contact rows. Stacked while the
+   brand has a column to itself; side by side once it hasn't. */
+.smap-brand {
   display: grid; align-content: start;
   gap: clamp(1rem, 3vh, 1.5rem);
 }
-.smap-contact { justify-items: start; }
 .smap-mark {
   display: inline-block;
   font-size: 1.0625rem; font-weight: 600; letter-spacing: -.02em;
@@ -370,14 +370,6 @@ a { color: inherit; }
 .smap-meta svg { width: 1.0625rem; height: 1.0625rem; flex: none; color: var(--ink-3); }
 .smap-meta a { text-decoration: none; transition: color .2s var(--ease); }
 .smap-meta a:hover { color: var(--ink); }
-
-.smap-social { display: flex; gap: .875rem; }
-.smap-social a {
-  display: block; color: var(--ink);
-  transition: opacity .2s var(--ease);
-}
-.smap-social a:hover { opacity: .55; }
-.smap-social svg { width: 1.125rem; height: 1.125rem; display: block; }
 
 /* ── the sitemap ──────────────────────────────────────────────────────────── */
 .smap-cols {
@@ -452,9 +444,9 @@ a { color: inherit; }
 }
 
 /* ── case study page ──────────────────────────────────────────────────────── */
-/* A case is one long read, so the whole page sits in a tighter measure than
-   the index does. Everything below inherits it through .wrap. */
-.page-case { --max: 64rem; }
+/* A case keeps the page's measure so its left edge lines up with the header
+   and footer; the reading column is set by the section grid below, not by
+   squeezing the whole page. */
 
 .case { padding-block: clamp(2.5rem, 7vh, 4.5rem) 0; }
 
@@ -503,7 +495,7 @@ a { color: inherit; }
 
 .case-section {
   display: grid;
-  grid-template-columns: minmax(0, 9rem) minmax(0, var(--prose));
+  grid-template-columns: minmax(0, 11rem) minmax(0, var(--prose));
   gap: clamp(1.5rem, 5vw, 4rem);
   padding-block: clamp(2.5rem, 6vw, 4rem);
   border-top: 1px solid var(--rule-soft);
@@ -511,8 +503,10 @@ a { color: inherit; }
 .case-section:first-child { border-top: 0; }
 
 .case-label {
-  font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--ink-3);
+  font-size: .6875rem; letter-spacing: .13em; text-transform: uppercase;
+  font-weight: 500; color: var(--ink-3);
+  padding-bottom: .75rem;
+  border-bottom: 1px solid var(--rule-soft);
   position: sticky; top: 5rem; align-self: start;
 }
 
@@ -632,20 +626,9 @@ figcaption {
 .case-next a:hover h2 { transform: translateX(.5rem); }
 @media (prefers-reduced-motion: reduce) { .case-next a:hover h2 { transform: none; } }
 
-/* ── reveal on scroll ─────────────────────────────────────────────────────── */
-.rise { opacity: 0; transform: translateY(1rem); }
-.rise.is-in {
-  opacity: 1; transform: none;
-  transition: opacity .7s var(--ease), transform .7s var(--ease);
-}
-@media (prefers-reduced-motion: reduce) {
-  .rise, .rise.is-in { opacity: 1; transform: none; transition: none; }
-}
-
 /* ── print ────────────────────────────────────────────────────────────────── */
 @media print {
   .site-head, .site-foot, .peek, .case-next, .back { display: none; }
   body { background: #fff; color: #000; }
   .case-section { break-inside: avoid; grid-template-columns: 1fr; }
-  .rise { opacity: 1; transform: none; }
 }

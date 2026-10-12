@@ -141,8 +141,7 @@ and `[link](https://example.com)`.
 The whole visual system is the `:root` block at the top of `styles.css` —
 paper, ink, rules, the accent, the type stacks, and the rhythm values
 (`--gutter`, `--max`, `--prose`, `--section`). Change a token there and it
-propagates. Two pages narrow that measure for themselves: `.page-front` and
-`.page-case` each reset `--max`.
+propagates. The front page widens that measure for itself via `.page-front`.
 
 There is no dark palette. The design commits to white, so every colour is
 stated once and `color-scheme: light` stops the browser tinting form controls
@@ -169,6 +168,7 @@ the files in `fonts/OFL.txt`.
 - Motion respects `prefers-reduced-motion`; the hover preview is off entirely
   on touch and reduced-motion.
 - Everything is keyboard reachable, and inner pages have a skip link.
+- Nothing animates in on scroll. Every page renders complete on load.
 - The front page holds the viewport and doesn't scroll, down to roughly a
   laptop; below that it gives up whitespace first and only then scrolls.
 - Once the brand block stops having a column to itself (below 1080px) it

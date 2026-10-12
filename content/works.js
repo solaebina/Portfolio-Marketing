@@ -52,7 +52,7 @@ window.PORTFOLIO = {
     role:  'Marketing & Data',
     email: 'solaebina@gmail.com',
     linkedin: 'https://www.linkedin.com/in/solaebina/',
-    location: 'Tokyo',
+    location: 'Tokyo / Vancouver',
     available: true,
   },
 
