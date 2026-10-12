@@ -48,3 +48,73 @@ hydrateProfile();
   }, { rootMargin: '0px 0px -12% 0px', threshold: .08 });
   items.forEach(el => io.observe(el));
 })();
+
+/* ── the footer ───────────────────────────────────────────────────────────────
+   A sitemap, built from the same content the pages are: every discipline and
+   every case it holds. Add a case and it appears here on its own. */
+(function renderFooter() {
+  const foot = document.querySelector('[data-foot]');
+  if (!foot) return;
+
+  const mail = PROFILE.email ? `mailto:${PROFILE.email}` : '#';
+
+  const columns = Object.entries(DISCIPLINES).map(([key, d]) => `
+    <div class="foot-col">
+      <h2 class="foot-head"><a href="${esc(discLink(key))}">${esc(d.label)}</a></h2>
+      <ul>${worksIn(key).map(w =>
+        `<li><a href="${esc(linkFor(w))}">${esc(w.short || w.title)}</a></li>`).join('')}</ul>
+    </div>`).join('');
+
+  foot.innerHTML = `
+    <div class="foot-main wrap">
+
+      <div class="foot-brand">
+        <a class="foot-mark" href="index.html">${esc(PROFILE.name || '')}</a>
+        <p class="foot-line">Exploring analytical creativity</p>
+        <ul class="foot-meta">
+          <li><a href="${esc(mail)}">${esc(PROFILE.email || '')}</a></li>
+          <li>${esc(PROFILE.location || '')}</li>
+        </ul>
+        <ul class="foot-social">
+          <li><a href="${esc(PROFILE.linkedin || '#')}" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M11.5 17v-4a2.5 2.5 0 0 1 5 0v4"/></svg></a></li>
+          <li><a href="${esc(mail)}" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3.5 7.5 8.5 6 8.5-6"/></svg></a></li>
+        </ul>
+      </div>
+
+      <nav class="foot-cols" aria-label="All work">
+        ${columns}
+        <div class="foot-col">
+          <h2 class="foot-head"><a href="about.html">Info</a></h2>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="${esc(mail)}">Contact</a></li>
+            <li><a href="${esc(PROFILE.linkedin || '#')}" target="_blank" rel="noopener">LinkedIn &nearr;</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="foot-cta">
+        <p class="foot-status"><i aria-hidden="true"></i> Open to new work</p>
+        <a class="foot-mail" href="${esc(mail)}">
+          <span>${esc(PROFILE.email || '')}</span>
+          <span class="foot-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="foot-base wrap">
+      <span>&copy; ${new Date().getFullYear()} ${esc(PROFILE.name || '')}</span>
+      <span class="foot-built">Built by hand &middot; no build step, no dependencies</span>
+      <button class="foot-top" type="button">Back to top &uarr;</button>
+    </div>`;
+
+  foot.querySelector('.foot-top').addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: reduced ? 'auto' : 'smooth',
+    });
+  });
+})();

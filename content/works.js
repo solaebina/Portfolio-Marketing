@@ -10,6 +10,7 @@
    id          lowercase, dashes. Becomes the web address.
    discipline  'data' | 'strategy' | 'social'
    title       the headline of the case
+   short       a column-width name for it, used in the footer sitemap
    thesis      ONE sentence. The whole case in a line. This is the hardest
                field to write and the one people actually read.
    client / role / year / team / timeline   the meta rail
@@ -84,6 +85,7 @@ window.PORTFOLIO = {
 
     {
       id: 'insurance-fraud-detection',
+      short: 'Insurance fraud detection',
       discipline: 'data',
       title: 'Finding the claims worth investigating',
       thesis: 'An insurer was picking fraud investigations by instinct, so I built a model that scores every claim on arrival and puts the likely ones first.',
@@ -158,6 +160,7 @@ window.PORTFOLIO = {
 
     {
       id: 'student-feedback-sentiment',
+      short: 'Student feedback sentiment',
       discipline: 'data',
       title: 'Reading 4,500 student reviews without reading them',
       thesis: 'A university had more course feedback than anyone could get through, so I built a model that sorts it in seconds — and was honest about the third of it the model should never touch.',
@@ -232,6 +235,7 @@ window.PORTFOLIO = {
 
     {
       id: 'sleep-data-for-doctors',
+      short: 'Sleep data for doctors',
       discipline: 'data',
       title: "A friend's sleep data, made readable",
       thesis: 'Months of watch data sat unusable in a file nobody could open, so I turned it into one chart a sleep doctor could read in an appointment.',
@@ -291,6 +295,7 @@ window.PORTFOLIO = {
 
     {
       id: 'hotel-guest-segmentation',
+      short: 'Hotel guest segmentation',
       discipline: 'strategy',
       title: 'Grouping guests so the marketing stops going to everyone',
       thesis: 'A hotel was sending one offer to every guest, so I grouped 119,000 bookings by how people actually book — and stopped it discounting to people who were coming anyway.',
@@ -365,6 +370,7 @@ window.PORTFOLIO = {
 
     {
       id: 'restaurant-satisfaction-drivers',
+      short: 'Restaurant satisfaction',
       discipline: 'strategy',
       title: 'What actually makes a restaurant’s customers happy',
       thesis: 'A restaurant knew its ratings mattered but not what moved them, so I modelled which parts of the evening change a satisfaction score — and by how much.',
@@ -438,6 +444,7 @@ window.PORTFOLIO = {
 
     {
       id: 'pitch-research-share-of-voice',
+      short: 'Share-of-voice research',
       discipline: 'strategy',
       title: 'Finding the conversation nobody had claimed',
       thesis: 'Two prospects wanted to know where they really stood, and share-of-voice audits turned an assumed catch-up problem into a first-mover opening in both cases.',
@@ -503,6 +510,7 @@ window.PORTFOLIO = {
 
     {
       id: 'employer-branding-linkedin',
+      short: 'Employer branding',
       discipline: 'social',
       title: 'A recruiting engine from a standing start',
       thesis: 'A semiconductor firm staffing new fabs had a LinkedIn page with no followers and no story, so we built a full-funnel content system out of real employee voices instead of recruiting copy.',
@@ -564,6 +572,7 @@ window.PORTFOLIO = {
 
     {
       id: 'japan-market-entry',
+      short: 'Japan market entry',
       discipline: 'social',
       title: "A market's voice, built in three weeks",
       thesis: 'A crypto company needed a credible Japanese presence that did not yet exist, so we built the channels, cadence, narrative and compliance layer together rather than bolting them on.',

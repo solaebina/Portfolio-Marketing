@@ -18,7 +18,7 @@ content.js          shared helpers (escaping, small markdown, a work row)
 front.js            builds the three doors on the front page
 work.js             draws a discipline's showcase
 case.js             draws a case study from its entry
-app.js              shared behaviour: profile, header nav, sticky rule, reveal
+app.js              shared behaviour: profile, header nav, footer, reveal
 content/works.js  ← YOUR WRITING LIVES HERE
 images/
   work/             case study images
@@ -82,6 +82,7 @@ nothing to run.
   timeline: '6 weeks',
   thumb: 'images/work/retention.webp',   // previews the row on hover
   hero:  'images/work/retention-wide.webp',
+  short: 'Churn model',         // column-width name, used in the footer
   tags: ['SQL', 'Forecasting'],
   draft: false,                 // true = hidden from the site
   external: '',                 // set a URL and the row links straight there
@@ -127,6 +128,8 @@ and `[link](https://example.com)`.
 - **Order is the order in the file**, within each discipline.
 - **The front page counts for itself.** Add a case and "3 cases" becomes
   "4 cases" on its own.
+- **The footer builds itself** from the same entries, which is what `short` is
+  for — a full title is too long for a footer column.
 
 ---
 
@@ -152,6 +155,7 @@ serif for case-study prose because it's the only long read on the site.
 - Motion respects `prefers-reduced-motion`; the hover preview is off entirely
   on touch and reduced-motion.
 - Everything is keyboard reachable, and inner pages have a skip link.
-- The front page holds the viewport and doesn't scroll.
+- The front page holds the viewport and doesn't scroll, and keeps a bare
+  three-link footer; the sitemap footer is for the pages inside.
 - Case pages print cleanly — the chrome drops away and sections avoid breaking.
 - No build step, no dependencies, nothing fetched from a CDN.
