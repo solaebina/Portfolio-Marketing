@@ -423,7 +423,10 @@ a { color: inherit; }
 .smap-top:hover { color: var(--ink); }
 
 @media (max-width: 1080px) {
-  .smap-main { grid-template-columns: minmax(0, 1fr); }
+  .smap-main {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: clamp(2.75rem, 7vh, 5rem);   /* the two now sit one above the other */
+  }
 
   /* The brand now has the full width rather than a narrow column, so it reads
      as one band: who, on the left; how to reach them, on the right. */
@@ -626,9 +629,22 @@ figcaption {
 .case-next a:hover h2 { transform: translateX(.5rem); }
 @media (prefers-reduced-motion: reduce) { .case-next a:hover h2 { transform: none; } }
 
+/* ── reveal on scroll ─────────────────────────────────────────────────────────
+   .reveal-on is set by app.js, so the hidden state only ever exists on a page
+   that can undo it. */
+.reveal-on .rise { opacity: 0; transform: translateY(1rem); }
+.rise.is-in {
+  opacity: 1; transform: none;
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on .rise, .rise.is-in { opacity: 1; transform: none; transition: none; }
+}
+
 /* ── print ────────────────────────────────────────────────────────────────── */
 @media print {
   .site-head, .site-foot, .peek, .case-next, .back { display: none; }
   body { background: #fff; color: #000; }
   .case-section { break-inside: avoid; grid-template-columns: 1fr; }
+  .reveal-on .rise { opacity: 1; transform: none; }
 }

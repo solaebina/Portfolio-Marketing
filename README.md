@@ -168,7 +168,11 @@ the files in `fonts/OFL.txt`.
 - Motion respects `prefers-reduced-motion`; the hover preview is off entirely
   on touch and reduced-motion.
 - Everything is keyboard reachable, and inner pages have a skip link.
-- Nothing animates in on scroll. Every page renders complete on load.
+- Case sections rise into place as you reach them. The hidden state is set by
+  `app.js` (the `.reveal-on` class), never by the stylesheet alone, so a page
+  that cannot run its JS shows everything rather than nothing.
+- A case page carries no header: the back link and the footer are its
+  navigation.
 - The front page holds the viewport and doesn't scroll, down to roughly a
   laptop; below that it gives up whitespace first and only then scrolls.
 - Once the brand block stops having a column to itself (below 1080px) it

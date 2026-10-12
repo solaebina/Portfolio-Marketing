@@ -31,6 +31,29 @@ hydrateProfile();
       esc(d.short || d.label)}</a>`).join('');
 })();
 
+/* ── things rise into place once ──────────────────────────────────────────────
+   The hiding is switched on from here, not from the stylesheet, so a page that
+   never runs this — JS broken, script blocked — shows everything rather than
+   nothing. */
+(function reveal() {
+  const items = document.querySelectorAll('.rise');
+  if (!items.length) return;
+
+  const showAll = () => items.forEach(el => el.classList.add('is-in'));
+  if (reduced || !('IntersectionObserver' in window)) return showAll();
+
+  document.documentElement.classList.add('reveal-on');
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('is-in');
+      io.unobserve(e.target);
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: .05 });
+  items.forEach(el => io.observe(el));
+})();
+
 /* ── the sitemap block ────────────────────────────────────────────────────────
    Used twice: as the hero on the front page, and as the footer everywhere
    else. Built from the same content the pages are, so a new case appears in

@@ -68,7 +68,7 @@
   }
 
   const sections = (w.sections || []).map(s => `
-    <section class="case-section">
+    <section class="case-section rise">
       <h2 class="case-label">${esc(s.title)}</h2>
       <div class="case-content">${(s.blocks || []).map(block).join('')}</div>
     </section>`).join('');
@@ -110,7 +110,7 @@
           ${facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}
         </dl>
 
-        ${w.hero ? `<figure class="case-hero">
+        ${w.hero ? `<figure class="case-hero rise">
           <img src="${esc(w.hero)}" alt="${esc(w.title)}">
         </figure>` : ''}
 
