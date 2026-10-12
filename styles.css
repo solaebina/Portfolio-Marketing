@@ -146,7 +146,7 @@ a { color: inherit; }
    further down and the brand would sit on top of the CTA on a phone. */
 @media (min-width: 1081px) {
   .front .smap-main {
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 2.9fr) minmax(0, .95fr);
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 3.4fr);
   }
 }
 .front .smap-mark {
@@ -160,9 +160,7 @@ a { color: inherit; }
   font-size: clamp(1rem, 1.7vw, 1.3125rem); line-height: 1.3; max-width: 20ch;
 }
 .front .smap-col li a { font-size: clamp(.875rem, 1.1vw, 1rem); color: var(--ink); }
-.front .smap-cols:hover .smap-col li a { opacity: .4; }
-.front .smap-col li a:hover { opacity: 1; }
-.front .smap-meta li, .front .smap-mail { font-size: .875rem; }
+.front .smap-meta li { font-size: .875rem; }
 
 /* ── a discipline's showcase ──────────────────────────────────────────────── */
 .work-head { padding-block: clamp(2.5rem, 6vw, 4rem) clamp(2rem, 5vw, 3rem); }
@@ -202,8 +200,10 @@ a { color: inherit; }
   text-decoration: none;
   transition: opacity .3s var(--ease);
 }
-.index:hover .row { opacity: .38; }
-.index .row:hover { opacity: 1; }
+@media (hover: hover) {
+  .index:has(.row:hover) .row { opacity: .38; }
+  .index:has(.row:hover) .row:hover { opacity: 1; }
+}
 
 .row-title {
   display: block;
@@ -280,7 +280,7 @@ a { color: inherit; }
 
 .smap-main {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 2.6fr) minmax(0, .95fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
   gap: clamp(2rem, 4vw, 3.5rem);
   padding-block: clamp(2.5rem, 5vw, 4rem);
 }
@@ -337,22 +337,17 @@ a { color: inherit; }
 .smap-col li { line-height: 1.35; }
 .smap-col li a {
   font-size: .8125rem; color: var(--ink-2); text-decoration: none;
-  transition: color .2s var(--ease);
+  transition: color .2s var(--ease), opacity .25s var(--ease);
 }
 .smap-col li a:hover { color: var(--ink); }
 
-/* ── the ask ──────────────────────────────────────────────────────────────── */
-.smap-mail {
-  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
-  padding: 0 0 .6875rem;
-  border-bottom: 1px solid var(--rule);
-  font-size: .8125rem; text-decoration: none;
-  transition: border-color .2s var(--ease);
+/* Pull focus to the link under the cursor. :has() means this fires only while
+   a link is actually hovered — keyed to the container's :hover it also fired
+   in the gaps between the columns, which read as the whole block flickering. */
+@media (hover: hover) {
+  .smap-cols:has(a:hover) a { opacity: .45; }
+  .smap-cols:has(a:hover) a:hover { opacity: 1; }
 }
-.smap-mail:hover { border-color: var(--ink-3); }
-.smap-mail .smap-arrow { color: var(--ink-3); transition: transform .35s var(--ease); }
-.smap-mail:hover .smap-arrow { transform: translateX(.25rem); }
-@media (prefers-reduced-motion: reduce) { .smap-mail:hover .smap-arrow { transform: none; } }
 
 /* ── the legal line ───────────────────────────────────────────────────────── */
 .smap-base {
@@ -372,9 +367,7 @@ a { color: inherit; }
 .smap-top:hover { color: var(--ink); }
 
 @media (max-width: 1080px) {
-  .smap-main { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  .smap-cols { grid-column: 1 / -1; order: 3; }
-  .smap-cta  { order: 2; }
+  .smap-main { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 680px) {
   .smap-main { grid-template-columns: minmax(0, 1fr); }
