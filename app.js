@@ -70,18 +70,15 @@ function sitemapMarkup(hero) {
     <div class="smap-main wrap">
 
       <div class="smap-brand">
-        <div class="smap-lockup">
-          <svg class="smap-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 0c.55 6.1 5.35 10.9 12 12-6.65 1.1-11.45 5.9-12 12-.55-6.1-5.35-10.9-12-12C6.65 10.9 11.45 6.1 12 0Z"/>
-          </svg>
+        <div class="smap-id">
           ${hero
             ? `<h1 class="smap-mark">${esc(PROFILE.name || '')}</h1>`
             : `<a class="smap-mark" href="index.html">${esc(PROFILE.name || '')}</a>`}
+          <p class="smap-line">Exploring analytical creativity</p>
         </div>
 
-        <p class="smap-line">Exploring analytical creativity</p>
-
-        <ul class="smap-meta">
+        <div class="smap-contact">
+          <ul class="smap-meta">
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="m3.5 7.5 8.5 6 8.5-6"/></svg>
             <a href="${esc(mail)}">${esc(PROFILE.email || '')}</a>
@@ -90,14 +87,15 @@ function sitemapMarkup(hero) {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21.5c4.5-5 7-8.4 7-11.5a7 7 0 1 0-14 0c0 3.1 2.5 6.5 7 11.5Z"/><circle cx="12" cy="10" r="2.6"/></svg>
             <span>${esc(PROFILE.location || '')}</span>
           </li>
-        </ul>
+          </ul>
 
-        <ul class="smap-social">
+          <ul class="smap-social">
           <li><a href="${esc(PROFILE.linkedin || '')}" target="_blank" rel="noopener" aria-label="LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg></a></li>
           <li><a href="${esc(mail)}" aria-label="Email">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 4h20a2 2 0 0 1 2 2v.35l-12 7.2-12-7.2V6a2 2 0 0 1 2-2Zm-2 4.68V18a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V8.68l-11.49 6.9a1 1 0 0 1-1.02 0L0 8.68Z"/></svg></a></li>
-        </ul>
+          </ul>
+        </div>
       </div>
 
       <nav class="smap-cols" aria-label="${hero ? 'Work' : 'All work'}">

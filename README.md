@@ -14,6 +14,7 @@ about.html          about and contact, reached from the footer
 
 ```
 styles.css          everything visual. The whole system is in :root at the top
+fonts/              Aleo, self-hosted (SIL OFL 1.1 — see fonts/OFL.txt)
 content.js          shared helpers (escaping, small markdown, a work row)
 front.js            puts the sitemap block on the front page
 work.js             draws a discipline's showcase
@@ -152,9 +153,14 @@ page's rhythm is set in `vh`-aware clamps, it stops insisting on a full screen
 below 640px tall, and it steps up one tier past 1800px wide rather than sitting
 marooned in the middle of a large monitor.
 
-Type is deliberately system-only, so nothing is fetched from a CDN and the
-page renders instantly offline: a grotesk for the interface and headlines, a
-serif for case-study prose because it's the only long read on the site.
+Type is **Aleo** throughout — one family, so there is one `--font` token
+rather than two. It is the variable cut (300–700) with a true italic, served
+from `fonts/`, so the page still fetches nothing from a CDN and renders
+offline. Swapping it means replacing the four `.woff2` files, the `@font-face`
+blocks at the top of `styles.css`, and that one token.
+
+Aleo is licensed under the SIL Open Font License 1.1; the licence travels with
+the files in `fonts/OFL.txt`.
 
 ---
 
@@ -165,6 +171,9 @@ serif for case-study prose because it's the only long read on the site.
 - Everything is keyboard reachable, and inner pages have a skip link.
 - The front page holds the viewport and doesn't scroll, down to roughly a
   laptop; below that it gives up whitespace first and only then scrolls.
+- Once the brand block stops having a column to itself (below 1080px) it
+  splits into a band — name and line on the left, contact and social on the
+  right — and the discipline columns take the full width beneath it.
 - The site is white, and stays white: it declares `color-scheme: light` and
   carries no dark palette, so a reader's dark OS doesn't invert it.
 - Case pages print cleanly — the chrome drops away and sections avoid breaking.
