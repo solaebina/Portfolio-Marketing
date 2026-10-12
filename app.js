@@ -99,7 +99,7 @@ function sitemapMarkup(hero) {
       </nav>
 
       <div class="smap-cta">
-        <p class="smap-status"><i aria-hidden="true"></i> Open to new work</p>
+        <h2 class="smap-head">Get in touch</h2>
         <a class="smap-mail" href="${esc(mail)}">
           <span>${esc(PROFILE.email || '')}</span>
           <span class="smap-arrow" aria-hidden="true">&rarr;</span>
